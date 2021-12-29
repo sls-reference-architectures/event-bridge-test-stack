@@ -9,4 +9,4 @@ Because event tests involve a deployment/teardown, they can be costly in time. I
 ## To Deploy and Run
 First, do whatever is necessary to have CLI access to your AWS account (you can quickly verify this with `aws s3 ls` or similar).
 
-Next, update the 
+Next, update the bus name in **both** `serverless.yml` and `sendMessage.e2e.test.ts` (look for "YOUR-BUS-NAME" and replace with, you know, your bus name). If you are not running in `us-east-1`, then also update the region in `sendMessage.e2e.test.ts`
