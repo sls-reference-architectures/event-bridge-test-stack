@@ -9,6 +9,7 @@ provider:
   runtime: nodejs14.x
   stage: dev
   region: us-east-1
+  accountId: !Sub ${AWS::AccountId}
   environment:
     NODE_ENV: ${self:custom.stage}
     LOG_LEVEL: DEBUG
@@ -25,7 +26,7 @@ functions:
     handler: src/messageWriter.handler
     events:
       - eventBridge:
-          eventBus: ${self:custom.eventBusName}
+          eventBus: !Sub arn:aws:events:${self:provider.region}:${self:provider.accountId}:event-bus/${self:custom.eventBusName}
           pattern:
             source:
               - com.your-app.test
