@@ -25,7 +25,7 @@ functions:
     handler: src/messageWriter.handler
     events:
       - eventBridge:
-          eventBus: !Sub arn:aws:events:${self:provider.region}:${AWS::AccountId}:event-bus/${self:custom.eventBusName}
+          eventBus: ${self:custom.eventBusName}
           pattern:
             source:
               - com.your-app.test
