@@ -1,0 +1,37 @@
+service: event-bridge-test
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  eventBusName: ${self:custom.stage}-YOUR-BUS-NAME
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+  environment:
+    NODE_ENV: ${self:custom.stage}
+    LOG_LEVEL: DEBUG
+    SAMPLE_DEBUG_LOG_RATE: '1'
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+  tags:
+    'lumigo:auto-trace': true
+  deploymentBucket:
+    name: com.reference-architecture.deploys
+    serverSideEncryption: AES256
+ 
+functions:
+  writeMessages:
+    handler: src/messageWriter.handler
+    events:
+      - eventBridge:
+          eventBus: !Sub arn:aws:events:${self:provider.region}:${AWS::AccountId}:event-bus/${self:custom.eventBusName}
+          pattern:
+            source:
+              - com.your-app.test
+            detail-type:
+              - new
+           
+plugins:
+  - serverless-plugin-typescript
+  - serverless-deployment-bucket
