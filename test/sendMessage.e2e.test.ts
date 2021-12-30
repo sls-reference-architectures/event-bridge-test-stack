@@ -3,7 +3,8 @@ import EventBridge, { PutEventsRequest } from 'aws-sdk/clients/eventbridge';
 import { NewMessage } from '../src/models';
 
 describe('When a message is published to the event bus', () => {
-  const busName = 'dev-YOUR-BUS-NAME';
+  // For normal usage, change the next line to your bus name
+  const busName = 'ra-event-bridge-test-dev-message-test';
   const source = 'com.your-app.test';
   const functionName = 'event-bridge-test-dev-writeMessages';
   const region = 'us-east-1';

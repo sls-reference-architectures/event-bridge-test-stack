@@ -2,7 +2,8 @@ service: event-bridge-test
 
 custom:
   stage: ${opt:stage, self:provider.stage}
-  eventBusName: ${self:custom.stage}-YOUR-BUS-NAME
+  # NOTE: For normal usage, replace the following dynamic name with your static bus name
+  eventBusName: ${self:service}-${self:custom.stage}-message-test
 
 provider:
   name: aws
@@ -27,12 +28,23 @@ functions:
     handler: src/messageWriter.handler
     events:
       - eventBridge:
-          eventBus: !Sub arn:aws:events:${self:provider.region}:${AWS::AccountId}:event-bus/${self:custom.eventBusName}
+          # For your normal usage, you would use the next line for your existing bus ARN
+          # eventBus: arn:aws:events:${self:provider.region}:123456789:event-bus/${self:custom.eventBusName}
+          eventBus: !Ref TestEventBus
           pattern:
             source:
               - com.your-app.test
             detail-type:
               - new
+
+# NOTE - you likely won't do the following, but will instead use your existing Event Bus.
+#  This just allows us to dynamically demonstrate the test.
+resources:
+  Resources:
+    TestEventBus:
+      Type: AWS::Events::EventBus
+      Properties:
+        Name: ${self:custom.eventBusName}
            
 plugins:
   - serverless-plugin-typescript
