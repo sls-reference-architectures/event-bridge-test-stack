@@ -28,7 +28,7 @@ describe('When a message is published to the event bus', () => {
       await expect({
         region,
         function: functionName,
-        timeout: 15000,
+        timeout: 30000,
       }).toHaveLog(propOne);
     });
   });
@@ -60,12 +60,12 @@ describe('When a message is published to the event bus', () => {
       await expect({
         region: 'us-east-1',
         function: functionName,
-        timeout: 15000,
+        timeout: 30000,
       }).toHaveLog(propOneCorrect);
       await expect({
         region: 'us-east-1',
         function: functionName,
-        timeout: 15000,
+        timeout: 30000,
       }).not.toHaveLog(propTwoIncorrect);
     });
   });
