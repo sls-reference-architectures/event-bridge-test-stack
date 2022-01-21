@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "test": "npm run lint && npx jest unit.test",
-    "test:e2e": "NODE_ENV=dev npx jest e2e.test --testTimeout=60000",
+    "test:e2e": "NODE_ENV=dev npx jest e2e.test --testTimeout=120000",
     "deploy": "npx sls deploy",
     "tear-down": "npx sls remove",
     "prepare": "husky install"
