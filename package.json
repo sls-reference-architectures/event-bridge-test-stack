@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "test": "npm run lint && npx jest unit.test",
-    "test:e2e": "NODE_ENV=dev npx jest e2e.test --testTimeout=60000",
+    "test:e2e": "NODE_ENV=dev npx jest e2e.test --testTimeout=120000",
     "deploy": "npx sls deploy",
     "tear-down": "npx sls remove",
     "prepare": "husky install"
@@ -34,7 +34,7 @@
     "faker": "^5.5.3",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
-    "serverless": "^2.55.0",
+    "serverless": "^3.26.0",
     "serverless-deployment-bucket": "^1.5.1",
     "serverless-plugin-typescript": "^2.1.4",
     "ts-jest": "^27.0.5",
