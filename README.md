@@ -1,5 +1,5 @@
 # event-bridge-test
-This project shows how a validation test for an EventBridge message might look like. It is a test-only stack that is designed to be deployed after other E2E tests have successfully completed. Then, the event tests can be run and the stack destroyed.
+This project demonstrates how a validation test for an EventBridge message might look like. It is a test-only stack that is designed to be deployed after other E2E tests have successfully completed. Then, the event tests can be run and the stack destroyed.
 
 So, the typical CI flow looks like:
 [other steps] -> Deploy App -> E2E Tests -> Deploy Event-Test Stack -> Event Tests -> Destroy Event-Test Stack
