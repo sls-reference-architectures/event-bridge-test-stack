@@ -1,13 +1,16 @@
 service: event-bridge-test
 
+frameworkVersion: '3'
+
 custom:
   stage: ${opt:stage, self:provider.stage}
   # NOTE: For normal usage, replace the following dynamic name with your static bus name
   eventBusName: ${self:service}-${self:custom.stage}-message-test
 
 provider:
+  architecture: arm64
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   stage: dev
   region: us-east-1
   environment:
@@ -16,9 +19,7 @@ provider:
     SAMPLE_DEBUG_LOG_RATE: '1'
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
   tags:
-    'lumigo:auto-trace': true
-  eventBridge:
-    useCloudFormation: true
+    lumigo:auto-trace: 'true'
   deploymentBucket:
     name: com.reference-architecture.deploys
     serverSideEncryption: AES256
