@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/faker": "^5.5.8",
     "@types/jest": "^27.4.0",
-    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^5.8.1",
     "aws-testing-library": "^1.1.1",
     "eslint": "^8.5.0",
