@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import EventBridge, { PutEventsRequest } from 'aws-sdk/clients/eventbridge';
 import { NewMessage } from '../src/models';
 
