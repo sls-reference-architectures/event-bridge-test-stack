@@ -1,11 +1,8 @@
-import { EventBridgeEvent } from 'aws-lambda';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Logger from '@dazn/lambda-powertools-logger';
 
-import { NewMessage } from './models';
-
-const handler = async (event: EventBridgeEvent<string, NewMessage>): Promise<void> => {
+export const handler = async (event: any): Promise<void> => {
   Logger.debug('Writing message out', { event });
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { handler };
+export const placeholder = () => { };
