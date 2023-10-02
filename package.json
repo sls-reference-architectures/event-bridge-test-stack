@@ -42,6 +42,6 @@
   },
   "dependencies": {
     "@dazn/lambda-powertools-logger": "^1.28.1",
-    "aws-sdk": "^2.1455.0"
+    "aws-sdk": "^2.1467.0"
   }
 }
