@@ -1,5 +1,10 @@
+const esModules = ['aws-testing-library', 'filter-obj'];
+
 module.exports = {
-  preset: 'ts-jest',
   rootDir: '.',
   setupFilesAfterEnv: ['./test/setupFrameworks.ts'],
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
+  transformIgnorePatterns: [`node_modules/(?!${esModules.join('|')})`],
 };
