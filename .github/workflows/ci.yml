@@ -40,5 +40,5 @@ jobs:
         run: npm run deploy
       - name: Run e2e tests
         run: npm run test:e2e
-      - name: Tear Down
-        run: npm run tear-down
+      # - name: Tear Down
+      #   run: npm run tear-down
