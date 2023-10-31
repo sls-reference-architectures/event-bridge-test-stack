@@ -9,20 +9,21 @@ custom:
 
 provider:
   architecture: arm64
-  name: aws
-  runtime: nodejs18.x
-  stage: dev
-  region: us-east-1
+  deploymentBucket:
+    name: com.reference-architecture.deploys
+    serverSideEncryption: AES256
   environment:
     NODE_ENV: ${self:custom.stage}
     LOG_LEVEL: DEBUG
     SAMPLE_DEBUG_LOG_RATE: '1'
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+  logRetentionInDays: 7
+  name: aws
+  region: us-east-1
+  runtime: nodejs18.x
+  stage: dev
   tags:
     lumigo:auto-trace: 'true'
-  deploymentBucket:
-    name: com.reference-architecture.deploys
-    serverSideEncryption: AES256
  
 functions:
   writeMessages:
