@@ -40,7 +40,7 @@
     "serverless": "^3.38.0",
     "serverless-deployment-bucket": "^1.6.0",
     "serverless-plugin-typescript": "^2.1.5",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   },
   "dependencies": {
     "@dazn/lambda-powertools-logger": "^1.28.1",
