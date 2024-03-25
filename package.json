@@ -28,7 +28,7 @@
     "@tsconfig/node18": "^18.2.3",
     "@types/aws-lambda": "^8.10.136",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.3.0",
     "aws-testing-library": "1.1.6",
     "eslint": "^8.57.0",
