@@ -49,7 +49,7 @@ functions:
             source:
               - com.your-app.test
             detail-type:
-              - modified
+              - new
 
 # NOTE - you likely won't do the following, but will instead use your existing Event Bus.
 #  This just allows us to dynamically demonstrate the test.
