@@ -18,10 +18,15 @@ describe('When a message is published to the event bus', () => {
         propTwo: faker.lorem.slug(),
         propThree: faker.lorem.slug(),
       };
-      const detailType = 'new';
+      const noiseMessage: NewMessage = {
+        propOne: faker.lorem.slug(),
+        propTwo: faker.lorem.slug(),
+        propThree: faker.lorem.slug(),
+      };
 
       // ACT
-      await publishMessage(message, busName, source, detailType);
+      await publishMessage(message, busName, source, 'new');
+      await publishMessage(noiseMessage, busName, source, 'modified');
 
       // ASSERT
       expect.assertions(1);

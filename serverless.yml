@@ -38,6 +38,18 @@ functions:
               - com.your-app.test
             detail-type:
               - new
+  writeMessages2:
+    handler: src/messageWriter.handler
+    events:
+      - eventBridge:
+          # For your normal usage, you would use the next line for your existing bus ARN
+          # eventBus: arn:aws:events:${self:provider.region}:123456789:event-bus/${self:custom.eventBusName}
+          eventBus: !Ref TestEventBus
+          pattern:
+            source:
+              - com.your-app.test
+            detail-type:
+              - modified
 
 # NOTE - you likely won't do the following, but will instead use your existing Event Bus.
 #  This just allows us to dynamically demonstrate the test.
