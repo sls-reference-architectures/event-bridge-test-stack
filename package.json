@@ -29,7 +29,7 @@
     "@types/aws-lambda": "^8.10.142",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.16.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "aws-testing-library": "1.1.6",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
