@@ -23,27 +23,27 @@
   "homepage": "https://github.com/sls-reference-architectures/event-bridge-test#readme",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@swc/core": "^1.4.8",
+    "@swc/core": "^1.7.22",
     "@swc/jest": "^0.2.36",
-    "@tsconfig/node18": "^18.2.3",
-    "@types/aws-lambda": "^8.10.136",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/aws-lambda": "^8.10.143",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "aws-testing-library": "1.1.6",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.29.1",
-    "husky": "^9.0.11",
+    "husky": "^9.1.5",
     "jest": "^29.7.0",
-    "serverless": "^3.38.0",
+    "serverless": "^3.39.0",
     "serverless-deployment-bucket": "^1.6.0",
     "serverless-plugin-typescript": "^2.1.5",
-    "typescript": "^5.4.3"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@dazn/lambda-powertools-logger": "^1.28.1",
-    "aws-sdk": "^2.1584.0"
+    "aws-sdk": "^2.1687.0"
   }
 }
