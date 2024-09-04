@@ -47,6 +47,21 @@ resources:
       Type: AWS::Events::EventBus
       Properties:
         Name: ${self:custom.eventBusName}
+    TestEventsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: event-bridge-test-stack-events
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        BillingMode: PAY_PER_REQUEST
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true
+
            
 plugins:
   - serverless-plugin-typescript
