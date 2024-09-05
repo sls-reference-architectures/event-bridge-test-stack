@@ -6,6 +6,9 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # NOTE: For normal usage, replace the following dynamic name with your static bus name
   eventBusName: ${self:service}-${self:custom.stage}-message-test
+  prune:
+    automatic: true
+    number: 3
 
 provider:
   architecture: arm64
@@ -65,4 +68,5 @@ resources:
 
 plugins:
   - serverless-esbuild
+  - serverless-prune-plugin
   - serverless-deployment-bucket
