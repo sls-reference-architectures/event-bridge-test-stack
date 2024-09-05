@@ -1,6 +1,6 @@
 service: event-bridge-test
 
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -15,19 +15,19 @@ provider:
   environment:
     NODE_ENV: ${self:custom.stage}
     LOG_LEVEL: DEBUG
-    SAMPLE_DEBUG_LOG_RATE: '1'
-    AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+    SAMPLE_DEBUG_LOG_RATE: "1"
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
   logRetentionInDays: 7
   name: aws
   region: us-east-1
   runtime: nodejs18.x
   stage: dev
   tags:
-    lumigo:auto-trace: 'true'
- 
+    lumigo:auto-trace: "true"
+
 functions:
   writeMessages:
-    handler: src/messageWriter.handler
+    handler: src/messageWriter.default
     events:
       - eventBridge:
           # For your normal usage, you would use the next line for your existing bus ARN
@@ -39,14 +39,15 @@ functions:
             detail-type:
               - new
 
-# NOTE - you likely won't do the following, but will instead use your existing Event Bus.
-#  This just allows us to dynamically demonstrate the test.
 resources:
   Resources:
+    # NOTE - you likely won't do the following, but will instead use your existing Event Bus.
+    #  This just allows us to dynamically demonstrate the test.
     TestEventBus:
       Type: AWS::Events::EventBus
       Properties:
         Name: ${self:custom.eventBusName}
+
     TestEventsTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -62,7 +63,6 @@ resources:
           AttributeName: ttl
           Enabled: true
 
-           
 plugins:
-  - serverless-plugin-typescript
+  - serverless-esbuild
   - serverless-deployment-bucket
