@@ -9,6 +9,7 @@ custom:
   prune:
     automatic: true
     number: 3
+  tableName: event-bridge-test-stack-events
 
 provider:
   architecture: arm64
@@ -16,10 +17,11 @@ provider:
     name: com.reference-architecture.deploys
     serverSideEncryption: AES256
   environment:
-    NODE_ENV: ${self:custom.stage}
-    LOG_LEVEL: DEBUG
-    SAMPLE_DEBUG_LOG_RATE: "1"
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+    LOG_LEVEL: DEBUG
+    NODE_ENV: ${self:custom.stage}
+    SAMPLE_DEBUG_LOG_RATE: "1"
+    TABLE_NAME: ${self:custom.tableName}
   logRetentionInDays: 7
   name: aws
   region: us-east-1
@@ -41,7 +43,10 @@ functions:
               - com.your-app.test
             detail-type:
               - new
-
+    iamRoleStatements:
+      - Effect: Allow
+        Action: dynamodb:PutItem
+        Resource: !Sub arn:aws:dynamodb:${self:provider.region}:${AWS::AccountId}:table/${self:custom.tableName}
 resources:
   Resources:
     # NOTE - you likely won't do the following, but will instead use your existing Event Bus.
@@ -54,7 +59,7 @@ resources:
     TestEventsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: event-bridge-test-stack-events
+        TableName: ${self:custom.tableName}
         KeySchema:
           - AttributeName: id
             KeyType: HASH
@@ -69,4 +74,5 @@ resources:
 plugins:
   - serverless-esbuild
   - serverless-prune-plugin
+  - serverless-iam-roles-per-function
   - serverless-deployment-bucket

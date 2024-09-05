@@ -5,8 +5,8 @@ describe("When a message is published to the event bus", () => {
   // For normal usage, change the next line to your bus name
   const busName = "event-bridge-test-dev-message-test";
   const source = "com.your-app.test";
-  const functionName = "event-bridge-test-dev-writeMessages";
-  const region = "us-east-1";
+  // const functionName = "event-bridge-test-dev-writeMessages";
+  // const region = "us-east-1";
 
   describe("with the correct detail type", () => {
     it("should get picked up by message writer", async () => {
@@ -29,11 +29,12 @@ describe("When a message is published to the event bus", () => {
 
       // ASSERT
       expect.assertions(1);
-      await expect({
-        region,
-        function: functionName,
-        timeout: 30000,
-      }).toHaveLog(propOne);
+      // await expect({
+      //   region,
+      //   function: functionName,
+      //   timeout: 30000,
+      // }).toHaveLog(propOne);
+      expect(true).toBeFalse(); // While we work this out
     });
   });
 
@@ -60,17 +61,18 @@ describe("When a message is published to the event bus", () => {
       await publishMessage(messageTwo, busName, source, incorrectDetailType);
 
       // ASSERT
-      expect.assertions(2);
-      await expect({
-        region: "us-east-1",
-        function: functionName,
-        timeout: 30000,
-      }).toHaveLog(propOneCorrect);
-      await expect({
-        region: "us-east-1",
-        function: functionName,
-        timeout: 30000,
-      }).not.toHaveLog(propTwoIncorrect);
+      // expect.assertions(2);
+      // await expect({
+      //   region: "us-east-1",
+      //   function: functionName,
+      //   timeout: 30000,
+      // }).toHaveLog(propOneCorrect);
+      // await expect({
+      //   region: "us-east-1",
+      //   function: functionName,
+      //   timeout: 30000,
+      // }).not.toHaveLog(propTwoIncorrect);
+      expect(true).toBeFalse(); // While we work this out
     });
   });
 });
