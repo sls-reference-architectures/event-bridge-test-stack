@@ -9,7 +9,7 @@
     "test:e2e": "npx jest --testMatch '**/?(*.)+(e2e.test).js' --config jest.config.e2e.js",
     "deploy": "npx sls deploy",
     "tear-down": "npx sls remove",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -25,16 +25,12 @@
     "@faker-js/faker": "^8.4.1",
     "@swc/core": "^1.7.22",
     "@swc/jest": "^0.2.36",
-    "@tsconfig/node18": "^18.2.4",
     "@types/aws-lambda": "^8.10.143",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.18.0",
     "aws-testing-library": "1.1.6",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-no-only-tests": "^3.3.0",
     "husky": "^9.1.5",
@@ -46,9 +42,7 @@
     "serverless-deployment-bucket": "^1.6.0",
     "serverless-esbuild": "^1.52.1",
     "serverless-iam-roles-per-function": "^3.2.0",
-    "serverless-plugin-typescript": "^2.1.5",
-    "serverless-prune-plugin": "^2.0.2",
-    "typescript": "^5.5.4"
+    "serverless-prune-plugin": "^2.0.2"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.645.0",
