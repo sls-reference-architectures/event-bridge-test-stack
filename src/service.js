@@ -1,11 +1,9 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
-import Logger from "@dazn/lambda-powertools-logger";
 
 const ddbClient = getDynamoDbClient();
 
-const handler = async (event) => {
-  Logger.debug("In messageWriter handler", { event });
+const writeEventToDb = async (event) => {
   const putCommandParams = {
     TableName: process.env.TABLE_NAME,
     Item: {
@@ -14,6 +12,19 @@ const handler = async (event) => {
     },
   };
   await ddbClient.send(new PutCommand(putCommandParams));
+
+  const client = getDynamoDbClient();
+
+  const params = {
+    TableName: process.env.TABLE_NAME,
+    Item: {
+      id: event.id,
+      data: event.data,
+      ttl: oneHourFromNow(),
+    },
+  };
+
+  await client.put(params);
 };
 
 const getDynamoDbClient = () => {
@@ -26,4 +37,5 @@ const getDynamoDbClient = () => {
 
 const oneHourFromNow = () => 3600 + parseInt(Date.now() / 1000, 10);
 
-export default handler;
+// eslint-disable-next-line import/prefer-default-export
+export { writeEventToDb };
