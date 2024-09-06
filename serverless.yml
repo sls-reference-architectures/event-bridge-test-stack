@@ -34,7 +34,7 @@ provider:
 
 functions:
   writeMessages:
-    handler: src/messageWriter.default
+    handler: src/handler.default
     events:
       - eventBridge:
           # For your normal usage, you would use the next line for your existing bus ARN
