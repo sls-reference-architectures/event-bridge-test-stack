@@ -1,5 +1,9 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  DynamoDBDocumentClient,
+  GetCommand,
+  PutCommand,
+} from "@aws-sdk/lib-dynamodb";
 
 const writeEventToDb = async (event) => {
   const ddbClient = getDynamoDbClient();
@@ -13,6 +17,19 @@ const writeEventToDb = async (event) => {
   await ddbClient.send(new PutCommand(putCommandParams));
 };
 
+const getEventFromDb = async (id) => {
+  const ddbClient = getDynamoDbClient();
+  const getCommandParams = {
+    TableName: process.env.TABLE_NAME,
+    Key: {
+      id,
+    },
+  };
+  const { Item } = await ddbClient.send(new GetCommand(getCommandParams));
+
+  return Item;
+};
+
 const getDynamoDbClient = () => {
   const intermediateClient = new DynamoDBClient({
     region: process.env.AWS_REGION,
@@ -23,5 +40,4 @@ const getDynamoDbClient = () => {
 
 const oneHourFromNow = () => 3600 + parseInt(Date.now() / 1000, 10);
 
-// eslint-disable-next-line import/prefer-default-export
-export { writeEventToDb };
+export { getEventFromDb, writeEventToDb };
