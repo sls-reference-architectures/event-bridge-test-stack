@@ -1,9 +1,8 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 
-const ddbClient = getDynamoDbClient();
-
 const writeEventToDb = async (event) => {
+  const ddbClient = getDynamoDbClient();
   const putCommandParams = {
     TableName: process.env.TABLE_NAME,
     Item: {
@@ -12,19 +11,6 @@ const writeEventToDb = async (event) => {
     },
   };
   await ddbClient.send(new PutCommand(putCommandParams));
-
-  const client = getDynamoDbClient();
-
-  const params = {
-    TableName: process.env.TABLE_NAME,
-    Item: {
-      id: event.id,
-      data: event.data,
-      ttl: oneHourFromNow(),
-    },
-  };
-
-  await client.put(params);
 };
 
 const getDynamoDbClient = () => {
