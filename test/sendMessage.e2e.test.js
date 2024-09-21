@@ -7,8 +7,6 @@ describe("When a message is published to the event bus", () => {
   // For normal usage, change the next line to your bus name
   const busName = "event-bridge-test-dev-message-test";
   const source = "com.your-app.test";
-  // const functionName = "event-bridge-test-dev-writeMessages";
-  // const region = "us-east-1";
 
   describe("with the correct detail type", () => {
     it("should get picked up by message writer", async () => {
