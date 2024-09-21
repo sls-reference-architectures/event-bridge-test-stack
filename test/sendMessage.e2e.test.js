@@ -1,7 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { faker } from "@faker-js/faker";
 import retry from "async-retry";
-import EventBridge from "aws-sdk/clients/eventbridge";
+import {
+  EventBridgeClient,
+  PutEventsCommand,
+} from "@aws-sdk/client-eventbridge";
 import { getEventFromDb } from "../src/service";
+
+const ebClient = new EventBridgeClient({ region: process.env.AWS_REGION });
 
 describe("When a message is published to the event bus", () => {
   // For normal usage, change the next line to your bus name
@@ -19,7 +25,12 @@ describe("When a message is published to the event bus", () => {
       };
 
       // ACT
-      const id1 = await publishMessage(message, busName, source, "new");
+      const id1 = await publishMessage({
+        message,
+        busName,
+        source,
+        detailType: "new",
+      });
 
       // ASSERT
       await retry(
@@ -79,8 +90,7 @@ describe("When a message is published to the event bus", () => {
 });
 
 const publishMessage = async ({ message, busName, source, detailType }) => {
-  const eventBridge = new EventBridge();
-  const putParams = {
+  const putCommand = new PutEventsCommand({
     Entries: [
       {
         Detail: JSON.stringify(message),
@@ -89,10 +99,10 @@ const publishMessage = async ({ message, busName, source, detailType }) => {
         Source: source,
       },
     ],
-  };
+  });
   const {
     Entries: [{ EventId: id }],
-  } = await eventBridge.putEvents(putParams).promise();
+  } = await ebClient.send(putCommand);
 
   return id;
 };
