@@ -51,18 +51,18 @@ describe("When a message is published to the event bus", () => {
       const incorrectDetailType = "old";
 
       // ACT
-      const id1 = await publishMessage(
-        messageOne,
+      const id1 = await publishMessage({
+        message: messageOne,
         busName,
         source,
-        correctDetailType,
-      );
-      const id2 = await publishMessage(
-        messageTwo,
+        detailType: correctDetailType,
+      });
+      const id2 = await publishMessage({
+        message: messageTwo,
         busName,
         source,
-        incorrectDetailType,
-      );
+        detailType: incorrectDetailType,
+      });
 
       // ASSERT
       await retry(
@@ -78,7 +78,7 @@ describe("When a message is published to the event bus", () => {
   });
 });
 
-const publishMessage = async (message, busName, source, detailType) => {
+const publishMessage = async ({ message, busName, source, detailType }) => {
   const eventBridge = new EventBridge();
   const putParams = {
     Entries: [
