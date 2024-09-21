@@ -2,7 +2,7 @@
 import { faker } from '@faker-js/faker';
 import retry from 'async-retry';
 import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge';
-import { getEventFromDb } from '../src/service';
+import { getMessageFromDb } from '../src/service';
 import { generateTestMessage } from './dataGenerators';
 
 const ebClient = new EventBridgeClient({ region: process.env.AWS_REGION });
@@ -19,7 +19,7 @@ describe('When a message is published to the event bus', () => {
       const message = generateTestMessage({ propOne });
 
       // ACT
-      const id1 = await publishMessage({
+      await publishMessage({
         message,
         busName,
         source,
@@ -29,7 +29,7 @@ describe('When a message is published to the event bus', () => {
       // ASSERT
       await retry(
         async () => {
-          const event1 = await getEventFromDb(id1);
+          const event1 = await getMessageFromDb(message.id);
           expect(event1.detail).toEqual(message);
         },
         { retries: 3 },
@@ -48,13 +48,13 @@ describe('When a message is published to the event bus', () => {
       const incorrectDetailType = 'old';
 
       // ACT
-      const id1 = await publishMessage({
+      await publishMessage({
         message: messageOne,
         busName,
         source,
         detailType: correctDetailType,
       });
-      const id2 = await publishMessage({
+      await publishMessage({
         message: messageTwo,
         busName,
         source,
@@ -64,10 +64,10 @@ describe('When a message is published to the event bus', () => {
       // ASSERT
       await retry(
         async () => {
-          const event1 = await getEventFromDb(id1);
-          expect(event1.detail).toEqual(messageOne);
-          const event2 = await getEventFromDb(id2);
-          expect(event2).toBeUndefined();
+          const message1 = await getMessageFromDb(messageOne.id);
+          expect(message1.detail).toEqual(messageOne);
+          const message2 = await getMessageFromDb(messageTwo.id);
+          expect(message2).toBeUndefined();
         },
         { retries: 3 },
       );
@@ -87,8 +87,8 @@ const publishMessage = async ({ message, busName, source, detailType }) => {
     ],
   });
   const {
-    Entries: [{ EventId: id }],
+    Entries: [{ EventId: eventId }],
   } = await ebClient.send(putCommand);
 
-  return id;
+  return eventId;
 };

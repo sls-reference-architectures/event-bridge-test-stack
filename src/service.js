@@ -1,19 +1,19 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, PutCommand } from '@aws-sdk/lib-dynamodb';
 
-const writeEventToDb = async (event) => {
+const writeMessageToDb = async (message) => {
   const ddbClient = getDynamoDbClient();
   const putCommandParams = {
     TableName: process.env.TABLE_NAME,
     Item: {
-      ...event,
+      ...message,
       ttl: oneHourFromNow(),
     },
   };
   await ddbClient.send(new PutCommand(putCommandParams));
 };
 
-const getEventFromDb = async (id) => {
+const getMessageFromDb = async (id) => {
   const ddbClient = getDynamoDbClient();
   const getCommandParams = {
     TableName: process.env.TABLE_NAME,
@@ -36,4 +36,4 @@ const getDynamoDbClient = () => {
 
 const oneHourFromNow = () => 3600 + parseInt(Date.now() / 1000, 10);
 
-export { getEventFromDb, writeEventToDb };
+export { getMessageFromDb, writeMessageToDb };

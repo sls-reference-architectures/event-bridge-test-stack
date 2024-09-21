@@ -1,9 +1,11 @@
 import middy from '@middy/core';
 import ioLogger from '@middy/input-output-logger';
-import { writeEventToDb } from './service';
+
+import { writeMessageToDb } from './service';
 
 const handler = async (event) => {
-  await writeEventToDb(event);
+  const { detail: message } = event;
+  await writeMessageToDb(message);
 };
 
 export default middy(handler).use(ioLogger());
