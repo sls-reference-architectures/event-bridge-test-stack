@@ -8,9 +8,8 @@ import { generateTestMessage } from './dataGenerators';
 const ebClient = new EventBridgeClient({ region: process.env.AWS_REGION });
 
 describe('When a message is published to the event bus', () => {
-  // For normal usage, change the next line to your bus name
-  const busName = 'event-bridge-test-dev-message-test';
   const source = 'com.your-app.test';
+  const busName = process.env.BUS_NAME;
 
   describe('with the correct detail type', () => {
     it('should get picked up by message writer', async () => {

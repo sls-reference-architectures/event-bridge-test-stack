@@ -11,4 +11,4 @@ Because event tests involve a deployment/teardown, they can be costly in time. I
 
 First, do whatever is necessary to have CLI access to your AWS account (you can quickly verify this with `aws s3 ls` or similar).
 
-Next, update the bus name in **both** `serverless.yml` and `sendMessage.e2e.test.ts` (look for "your bus name" in the comment and replace the value below with, you know, your bus name). If you are not running in `us-east-1`, then also update the region in `sendMessage.e2e.test.ts`
+Next, update the bus name in **both** `serverless.yml` and `jest.setup.e2e.js` (look for "your bus name" in the comment and replace the value below with, you know, your bus name). If you are not running in `us-east-1`, then also update the region in the same file.
