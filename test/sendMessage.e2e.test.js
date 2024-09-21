@@ -6,6 +6,7 @@ import {
   PutEventsCommand,
 } from "@aws-sdk/client-eventbridge";
 import { getEventFromDb } from "../src/service";
+import { generateTestMessage } from "./dataGenerators";
 
 const ebClient = new EventBridgeClient({ region: process.env.AWS_REGION });
 
@@ -18,11 +19,7 @@ describe("When a message is published to the event bus", () => {
     it("should get picked up by message writer", async () => {
       // ARRANGE
       const propOne = faker.lorem.slug();
-      const message = {
-        propOne,
-        propTwo: faker.lorem.slug(),
-        propThree: faker.lorem.slug(),
-      };
+      const message = generateTestMessage({ propOne });
 
       // ACT
       const id1 = await publishMessage({
@@ -47,17 +44,9 @@ describe("When a message is published to the event bus", () => {
     it("should not get picked up by handler", async () => {
       // ARRANGE
       const propOneCorrect = `${faker.lorem.slug()}_correct`;
-      const messageOne = {
-        propOne: propOneCorrect,
-        propTwo: faker.lorem.slug(),
-        propThree: faker.lorem.slug(),
-      };
-      const propTwoIncorrect = `${faker.lorem.slug()}_incorrect`;
-      const messageTwo = {
-        propOne: propTwoIncorrect,
-        propTwo: faker.lorem.slug(),
-        propThree: faker.lorem.slug(),
-      };
+      const messageOne = generateTestMessage({ propOne: propOneCorrect });
+      const propOneIncorrect = `${faker.lorem.slug()}_incorrect`;
+      const messageTwo = generateTestMessage({ propOne: propOneIncorrect });
       const correctDetailType = "new";
       const incorrectDetailType = "old";
 
