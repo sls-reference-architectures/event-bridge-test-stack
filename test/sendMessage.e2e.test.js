@@ -1,22 +1,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { faker } from "@faker-js/faker";
-import retry from "async-retry";
-import {
-  EventBridgeClient,
-  PutEventsCommand,
-} from "@aws-sdk/client-eventbridge";
-import { getEventFromDb } from "../src/service";
-import { generateTestMessage } from "./dataGenerators";
+import { faker } from '@faker-js/faker';
+import retry from 'async-retry';
+import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge';
+import { getEventFromDb } from '../src/service';
+import { generateTestMessage } from './dataGenerators';
 
 const ebClient = new EventBridgeClient({ region: process.env.AWS_REGION });
 
-describe("When a message is published to the event bus", () => {
+describe('When a message is published to the event bus', () => {
   // For normal usage, change the next line to your bus name
-  const busName = "event-bridge-test-dev-message-test";
-  const source = "com.your-app.test";
+  const busName = 'event-bridge-test-dev-message-test';
+  const source = 'com.your-app.test';
 
-  describe("with the correct detail type", () => {
-    it("should get picked up by message writer", async () => {
+  describe('with the correct detail type', () => {
+    it('should get picked up by message writer', async () => {
       // ARRANGE
       const propOne = faker.lorem.slug();
       const message = generateTestMessage({ propOne });
@@ -26,7 +23,7 @@ describe("When a message is published to the event bus", () => {
         message,
         busName,
         source,
-        detailType: "new",
+        detailType: 'new',
       });
 
       // ASSERT
@@ -40,15 +37,15 @@ describe("When a message is published to the event bus", () => {
     });
   });
 
-  describe("with the incorrect detail type", () => {
-    it("should not get picked up by handler", async () => {
+  describe('with the incorrect detail type', () => {
+    it('should not get picked up by handler', async () => {
       // ARRANGE
       const propOneCorrect = `${faker.lorem.slug()}_correct`;
       const messageOne = generateTestMessage({ propOne: propOneCorrect });
       const propOneIncorrect = `${faker.lorem.slug()}_incorrect`;
       const messageTwo = generateTestMessage({ propOne: propOneIncorrect });
-      const correctDetailType = "new";
-      const incorrectDetailType = "old";
+      const correctDetailType = 'new';
+      const incorrectDetailType = 'old';
 
       // ACT
       const id1 = await publishMessage({

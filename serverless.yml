@@ -19,10 +19,10 @@ provider:
     name: com.reference-architecture.deploys
     serverSideEncryption: AES256
   environment:
-    AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
     LOG_LEVEL: DEBUG
     NODE_ENV: ${self:custom.stage}
-    SAMPLE_DEBUG_LOG_RATE: "1"
+    SAMPLE_DEBUG_LOG_RATE: '1'
     TABLE_NAME: ${self:custom.tableName}
   logRetentionInDays: 7
   name: aws
@@ -30,7 +30,7 @@ provider:
   runtime: nodejs20.x
   stage: dev
   tags:
-    lumigo:auto-trace: "true"
+    lumigo:auto-trace: 'true'
 
 functions:
   writeMessages:

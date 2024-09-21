@@ -1,5 +1,5 @@
-describe("A", () => {
-  it("is A", () => {
-    expect("A").toEqual("A");
+describe('A', () => {
+  it('is A', () => {
+    expect('A').toEqual('A');
   });
 });

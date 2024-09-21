@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { faker } from "@faker-js/faker";
-import { ulid } from "ulid";
+import { faker } from '@faker-js/faker';
+import { ulid } from 'ulid';
 
 const generateTestMessage = (overrideWith) => {
   const message = {

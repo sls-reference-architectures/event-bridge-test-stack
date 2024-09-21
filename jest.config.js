@@ -1,7 +1,7 @@
 module.exports = {
-  setupFilesAfterEnv: ["jest-extended/all"],
-  testEnvironment: "node",
+  setupFilesAfterEnv: ['jest-extended/all'],
+  testEnvironment: 'node',
   transform: {
-    "^.+\\.(t|j)sx?$": "@swc/jest",
+    '^.+\\.(t|j)sx?$': '@swc/jest',
   },
 };
