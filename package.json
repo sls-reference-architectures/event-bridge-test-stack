@@ -48,7 +48,9 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.645.0",
     "@aws-sdk/lib-dynamodb": "^3.656.0",
-    "@dazn/lambda-powertools-logger": "^1.28.1"
+    "@dazn/lambda-powertools-logger": "^1.28.1",
+    "@middy/core": "^5.5.0",
+    "@middy/input-output-logger": "^5.5.0"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

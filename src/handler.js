@@ -1,9 +1,9 @@
-import Logger from "@dazn/lambda-powertools-logger";
+import middy from "@middy/core";
+import ioLogger from "@middy/input-output-logger";
 import { writeEventToDb } from "./service";
 
 const handler = async (event) => {
-  Logger.debug("In messageWriter handler", { event });
   await writeEventToDb(event);
 };
 
-export default handler;
+export default middy(handler).use(ioLogger());
