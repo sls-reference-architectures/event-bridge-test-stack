@@ -29,8 +29,9 @@ describe('When a message is published to the event bus', () => {
       // ASSERT
       await retry(
         async () => {
-          const event1 = await getMessageFromDb(message.id);
-          expect(event1.detail).toEqual(message);
+          const message1 = await getMessageFromDb(message.id);
+
+          expect(message1).toEqual(expect.objectContaining(message));
         },
         { retries: 3 },
       );
@@ -65,7 +66,7 @@ describe('When a message is published to the event bus', () => {
       await retry(
         async () => {
           const message1 = await getMessageFromDb(messageOne.id);
-          expect(message1.detail).toEqual(messageOne);
+          expect(message1).toEqual(expect.objectContaining(messageOne));
           const message2 = await getMessageFromDb(messageTwo.id);
           expect(message2).toBeUndefined();
         },
