@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/sls-reference-architectures/event-bridge-test#readme",
   "devDependencies": {
-    "@aws-sdk/client-eventbridge": "^3.687.0",
+    "@aws-sdk/client-eventbridge": "^3.712.0",
     "@faker-js/faker": "^9.0.3",
     "@swc/core": "^1.9.2",
     "@swc/jest": "^0.2.36",
