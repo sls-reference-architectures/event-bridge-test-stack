@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/sls-reference-architectures/event-bridge-test#readme",
   "devDependencies": {
-    "@aws-sdk/client-eventbridge": "^3.749.0",
+    "@aws-sdk/client-eventbridge": "^3.1081.0",
     "@faker-js/faker": "^9.0.3",
     "@swc/core": "^1.10.16",
     "@swc/jest": "^0.2.36",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1081.0",
-    "@aws-sdk/lib-dynamodb": "^3.687.0",
+    "@aws-sdk/lib-dynamodb": "^3.1081.0",
     "@dazn/lambda-powertools-logger": "^1.28.1",
     "@middy/core": "^6.4.5",
     "@middy/input-output-logger": "^6.4.5"
