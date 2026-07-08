@@ -39,7 +39,7 @@
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "osls": "^4.0.0",
-    "serverless-esbuild": "^1.54.6",
+    "serverless-esbuild": "^1.57.2",
     "serverless-iam-roles-per-function": "^3.2.0",
     "ulid": "^2.3.0"
   },
