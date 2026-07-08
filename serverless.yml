@@ -1,6 +1,6 @@
 service: event-bridge-test
 
-frameworkVersion: 3.x
+frameworkVersion: '4'
 
 custom:
   stage: ${opt:stage, self:provider.stage}
