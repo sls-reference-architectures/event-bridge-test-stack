@@ -24,7 +24,7 @@ provider:
   logRetentionInDays: 7
   name: aws
   region: us-east-1
-  runtime: nodejs20.x
+  runtime: nodejs24.x
   stage: dev
   tags:
     lumigo:auto-trace: 'true'
