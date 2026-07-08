@@ -77,4 +77,3 @@ plugins:
   - serverless-esbuild
   - serverless-prune-plugin
   - serverless-iam-roles-per-function
-  - serverless-deployment-bucket
