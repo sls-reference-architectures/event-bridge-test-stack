@@ -3,9 +3,9 @@ import ioLogger from '@middy/input-output-logger';
 
 import { writeMessageToDb } from './service';
 
-const handler = async (event) => {
+const writeMessageHandler = async (event) => {
   const { detail: message } = event;
   await writeMessageToDb(message);
 };
 
-export default middy(handler).use(ioLogger());
+export const handler = middy(writeMessageHandler).use(ioLogger());
