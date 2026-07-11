@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint .",
     "test": "npx jest --testMatch '**/?(*.)+(unit.test).js'",
     "test:e2e": "npx jest --testMatch '**/?(*.)+(e2e.test).js' --config jest.config.e2e.js",
     "deploy": "npx sls deploy",
