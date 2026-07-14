@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { faker } from '@faker-js/faker';
 import retry from 'async-retry';
 import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge';
