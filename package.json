@@ -42,7 +42,7 @@
     "prettier": "^3.3.3",
     "serverless-esbuild": "^1.57.2",
     "serverless-iam-roles-per-function": "^3.2.0",
-    "ulid": "^2.3.0"
+    "ulid": "^3.0.2"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1086.0",
