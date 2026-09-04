@@ -47,7 +47,7 @@
     "@aws-sdk/client-dynamodb": "^3.1110.0",
     "@aws-sdk/lib-dynamodb": "^3.1123.0",
     "@middy/core": "^7.7.2",
-    "@middy/input-output-logger": "^7.7.2"
+    "@middy/input-output-logger": "^7.9.2"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
